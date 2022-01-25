@@ -1,3 +1,6 @@
+'this code was developed collaboratively, and some samples were written by PETEX.
+'to see my contribution, see where it says "'Author: Akmal Aulia"
+
 Option Explicit
 'Petroleum Experts Ltd - Open Server VBA Example
 
@@ -12,6 +15,7 @@ Dim OSString As String
 Dim typeFluide As Long
 
 Sub OpenFile_cka_20()
+'Author: Akmal Aulia
 
 Dim Path As String
 
@@ -55,7 +59,7 @@ Disconnect
 End Sub
 
 Sub Calculate_cka20()
-
+'Author: Akmal Aulia
 Dim NumCalcs As Integer
 Dim MD As Variant
 Dim BottomPress As Variant
@@ -126,7 +130,7 @@ End If
 End Sub
 
 Sub Calculate_cka20_v2()
-
+'Author: Akmal Aulia
 Dim NumCalcs As Integer
 Dim MD As Variant
 Dim BottomPress As Variant
@@ -197,7 +201,7 @@ End Sub
 
 
 Sub Calculate_cka21()
-
+'Author: Akmal Aulia
 Dim NumCalcs As Integer
 Dim MD As Variant
 Dim BottomPress As Variant
@@ -269,7 +273,7 @@ End If
 End Sub
 
 Sub Calculate_cka21_v2()
-
+'Author: Akmal Aulia
 Dim NumCalcs As Integer
 Dim MD As Variant
 Dim BottomPress As Variant
@@ -461,7 +465,7 @@ Function DoGAPFunc(Gv As String) As String
 End Function
 
 Sub Pulling()
-
+'Author: Akmal Aulia
 'declare variables
 Dim sqlStr2 As String
 Dim i As Integer
@@ -543,7 +547,7 @@ End If
 End Sub
 
 Sub copy_to_container()
-
+'Author: Akmal Aulia
 Dim first_row As Integer, maxit As Integer, j As Integer
 Dim i As Integer, cnt As Integer, num_tab As Integer, shift_row As Integer
 
@@ -607,7 +611,7 @@ End Sub
 
 
 Sub Pulling_cka20()
-
+'Author: Akmal Aulia
 'declare variables
 Dim sqlStr2 As String
 Dim i As Integer
@@ -691,7 +695,7 @@ End If
 End Sub
 
 Sub Pulling_cka21()
-
+'Author: Akmal Aulia
 'declare variables
 Dim sqlStr2 As String
 Dim i As Integer
@@ -776,7 +780,7 @@ End Sub
 
 
 Sub Clearing()
-
+'Author: Akmal Aulia
 Dim i As Integer, j As Integer, last_row As Integer
 Dim last_col As Integer
 
@@ -801,7 +805,7 @@ End Sub
 
 
 Sub delete_rows()
-
+'Author: Akmal Aulia
     'Dim i As Integer, str_arg As String
     'Dim cum_rows As Integer, last_row As Integer
     
