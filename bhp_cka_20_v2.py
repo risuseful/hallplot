@@ -2,8 +2,6 @@
 """
 Created on Tue Oct  3 11:00:01 2023
 
-Purpose: Reproduce PROSPER (by PETEX) results, i.e. bottom pressure of water injector, using neural net.
-
 @author: akmalaulia
 """
 
@@ -40,7 +38,7 @@ d = pd.read_csv('train_cka20.csv')
 nr = len(d) # number of rows
 
 # set input and output
-X = d[['Q_STBD', 'THP_PSIA']].values # input
+X = d[['Q_STBD', 'THP_PSIG']].values # input
 y = d['BHP_PSI'].values # input
 
 # feature scaling
@@ -82,10 +80,10 @@ nnet.fit(X,y) #
 query = "SELECT cast([TIMESTAMP] as Date) as Date , "
 query = query + "coalesce([VOL_INJ_CK20], avg([VOL_INJ_CK20]) over ()) as Q_STBD , "
 query = query + "coalesce(([INJ_BP_CK20]*14.5), avg([INJ_BP_CK20]*14.5) over ()) as THP_PSIG " # in PSIG
-query = query + "FROM [DataMining].[dbo].[vIPRIZ_WaterInj] where TIMESTAMP > " + "'" + min_date + "'" + " order by TIMESTAMP asc"
+query = query + "FROM [*****].[*****].[*****] where TIMESTAMP > " + "'" + min_date + "'" + " order by TIMESTAMP asc"
 
 # use SQL query to pull from database
-conn = pyodbc.connect(driver='******', server='='******',', user='='******',', password='='******',', database='='******',')
+conn = pyodbc.connect(driver='*****', server='*****', user='*****', password='*****', database='*****')
 cursor = conn.cursor()
 d_pred = pd.read_sql_query(query, conn)
 
@@ -99,15 +97,14 @@ y_pred = nnet.predict(X_pred) # predict
 # inverse transform
 y_pred = y_pred.reshape(-1,1) # reshape predicted
 y_pred = scaler_out.inverse_transform(y_pred)
-y_pred = y_pred.reshape(-1,1) # reshape actual
-y_pred = scaler_out.inverse_transform(y_pred)
+
 
 # compile out_pred_cka20.csv
 res = pd.DataFrame()
 res['Date'] = d_pred['Date']
 res['Q_STBD'] = d_pred['Q_STBD']
 res['THP_PSIG'] = d_pred['THP_PSIG']
-res['BHP_PSIG'] = y_pred.reshape(-1)
+res['BHP_PSI'] = y_pred.reshape(-1)
 res['cum_Q_STBD'] = res['Q_STBD'].cumsum()
-res['cum_BHP_PSIG'] = res['BHP_PSIG'].cumsum()
+res['cum_BHP_PSI'] = res['BHP_PSI'].cumsum()
 res.to_csv('out_pred_cka20.csv')
